@@ -8,7 +8,7 @@ verifique a conexão com o banco de dados no arquivo .env
 
 No terminal insira o seguinte comando para iniciar as migrations:
 
-```http
+```
     php artisan migrate
 ```
 Para gerar dados fake:
