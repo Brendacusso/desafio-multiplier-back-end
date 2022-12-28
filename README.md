@@ -13,7 +13,7 @@ No terminal insira o seguinte comando para iniciar as migrations:
 ```
 Para gerar dados fake:
 
-```http
+```
     php artisan db:seed
 ```
 
@@ -21,7 +21,7 @@ Para gerar dados fake:
 
 #### Login de um funcionário do restaurante
 
-```http
+```
     POST /api/login/
 ```
 
@@ -33,7 +33,7 @@ Para gerar dados fake:
 
 ### Exemplo JSON
 
-```json
+```
 {
     "email" : "nome@teste.com",
     "password" : "38dfrAf@",
@@ -43,7 +43,7 @@ Para gerar dados fake:
 
 #### Cadastrar dados de um funcionário do restaurante
 
-```http
+```
     POST /api/register/user
 ```
 
@@ -55,7 +55,7 @@ Para gerar dados fake:
 
 ### Exemplo JSON
 
-```json
+```
 {
     "email" : "usuario@teste.com",
     "password" : "a@fs4fj",
@@ -65,7 +65,7 @@ Para gerar dados fake:
 
 #### Registrar um novo cliente do restaurante
 
-```http
+```
     POST /api/register/
 ```
 
@@ -76,7 +76,7 @@ Para gerar dados fake:
 
 ### Exemplo JSON
 
-```json
+```
 {
     "name" : "Aila",
     "CPF" : "000.000.000-00"
@@ -85,7 +85,7 @@ Para gerar dados fake:
 
 #### Cadastrar número da mesa do restaurante
 
-```http
+```
     POST /api/register/table/
 ```
 
@@ -95,7 +95,7 @@ Para gerar dados fake:
 
 ### Exemplo JSON
 
-```json
+```
 {
     "table_number" : 2
 }
@@ -103,7 +103,7 @@ Para gerar dados fake:
 
 #### Registrar um novo item no cárdapio do restaurante
 
-```http
+```
     POST /api/register/menu/
 ```
 
@@ -113,7 +113,7 @@ Para gerar dados fake:
 
 ### Exemplo JSON
 
-```json
+```
 {
     "name" : "Pizza Doce"
 }
@@ -121,7 +121,7 @@ Para gerar dados fake:
 
 #### Registrar um novo pedido
 
-```http
+```
     POST /api/register/order/
 ```
 
@@ -135,7 +135,7 @@ Para gerar dados fake:
 
 ### Exemplo JSON
 
-```json
+```
 {
     "table" : 2,
     "customer" : 1,
@@ -146,7 +146,7 @@ Para gerar dados fake:
 
 #### Listar pedidos em andamento do garçom
 
-```http
+```
     GET /api/orders/waiter/{waiter}
 ```
 
@@ -156,21 +156,21 @@ Para gerar dados fake:
 
 ### Exemplo
 
-```http
+```
 http://127.0.0.1:8000/api/orders/waiter/1
 ```
 
 
 #### Listar pedidos a fazer e em andamento para cozinheiro
 
-```http
+```
     GET /api/orders/cooker/
 ```
 
 
 #### Listar pedidos com filtros
 
-```http
+```
     GET /api/orders/filters?day=12&month=2&table=1&customer=1
 ```
 
@@ -183,7 +183,7 @@ http://127.0.0.1:8000/api/orders/waiter/1
 
 ### Exemplos
 
-```http
+```
 http://127.0.0.1:8000/api/orders/filter?day=16
 
 http://127.0.0.1:8000/api/orders/filter?day=11&month=1
@@ -193,7 +193,7 @@ http://127.0.0.1:8000/api/orders/filter?table=2
 
 #### Listar Maior, primeiro e último pedido do cliente
 
-```http
+```
     GET /api/orders/customer/{customer}
 ```
 
@@ -203,7 +203,7 @@ http://127.0.0.1:8000/api/orders/filter?table=2
 
 ### Exemplos
 
-```http
+```
 http://127.0.0.1:8000/api/orders/customer/1
 
 ```
