@@ -18,6 +18,12 @@ class UserSeeder extends Seeder
 
         $faker = \Faker\Factory::create('pt_BR');
         for ($i=0; $i<10; $i++) {
+            if($i<5) {
+                $number = 0;
+            } else {
+                $number = rand(0,1);
+            }
+
             $number = rand(0,1);
             \DB::table('users')->insert([
                 'email' => $faker->email,

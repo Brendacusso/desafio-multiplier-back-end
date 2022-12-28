@@ -24,6 +24,12 @@ Para gerar dados fake:
     php artisan db:seed
 ```
 
+Para iniciar a API
+
+```
+    php artisan serve
+```
+
 ## Rotas e parâmetros
 
 #### Login de um funcionário do restaurante
