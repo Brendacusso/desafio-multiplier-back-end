@@ -1,85 +1,209 @@
 
-<p align="center">
-  <img src="https://multiplier.com.br/assets/multiplier.svg" width="320" alt="Nest Logo" />
-</p>
+## Documentação da API
+
+#### Instalação do projeto
+
+Após clonar o repositório para sua máquina,
+verifique a conexão com o banco de dados no arquivo .env
+
+No terminal insira o seguinte comando para iniciar as migrations:
+
+```http
+    php artisan migrate
+```
+Para gerar dados fake:
+
+```http
+    php artisan db:seed
+```
+
+## Rotas e parâmetros
+
+#### Login de um funcionário do restaurante
+
+```http
+    POST /api/login/
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `email` | `string` | **Obrigatório**. Email do funcionário |
+| `password`  | `string` | **Obrigatório**. Senha |
+| `role`  | `string` | **Obrigatório**. Descrição da função no restaurante (waiter or cooker) |
+
+### Exemplo JSON
+
+```json
+{
+    "email" : "nome@teste.com",
+    "password" : "38dfrAf@",
+    "role" : "waiter"
+}
+```
+
+#### Cadastrar dados de um funcionário do restaurante
+
+```http
+    POST /api/register/user
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `email` | `string` | **Obrigatório**. Email do funcionário |
+| `password`  | `string` | **Obrigatório**. Senha |
+| `role`  | `string` | **Obrigatório**. Descrição da função no restaurante (waiter or cooker) |
+
+### Exemplo JSON
+
+```json
+{
+    "email" : "usuario@teste.com",
+    "password" : "a@fs4fj",
+    "role" : "cooker"
+}
+```
+
+#### Registrar um novo cliente do restaurante
+
+```http
+    POST /api/register/
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `name` | `string` | **Obrigatório**. Nome do cliente |
+| `CPF`  | `string` | **Obrigatório**. Chave CPF do cliente |
+
+### Exemplo JSON
+
+```json
+{
+    "name" : "Aila",
+    "CPF" : "000.000.000-00"
+}
+```
+
+#### Cadastrar número da mesa do restaurante
+
+```http
+    POST /api/register/table/
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `table_number` | `integer` | **Obrigatório**. Número da mesa|
+
+### Exemplo JSON
+
+```json
+{
+    "table_number" : 2
+}
+```
+
+#### Registrar um novo item no cárdapio do restaurante
+
+```http
+    POST /api/register/menu/
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `name` | `string` | **Obrigatório**. Nome do prato |
+
+### Exemplo JSON
+
+```json
+{
+    "name" : "Pizza Doce"
+}
+```
+
+#### Registrar um novo pedido
+
+```http
+    POST /api/register/order/
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `table` | `integer` | **Obrigatório**. Id da mesa |
+| `customer` | `integer` | **Obrigatório**. Id do cliente |
+| `waiter` | `integer` | **Obrigatório**. Id do garçom (users Id quando role = waiter) |
+| `items` | `string` | **Obrigatório**. Id dos itens do menu |
 
 
-# Desafio Back-end Multiplier
+### Exemplo JSON
 
-O intuito deste teste é avaliar seus conhecimentos técnicos de back-end.
+```json
+{
+    "table" : 2,
+    "customer" : 1,
+    "waiter" : 1,
+    "items" : (1,2,3)
+}
+```
 
-O teste consiste em fazer um sistema para um restaurante.
+#### Listar pedidos em andamento do garçom
 
-Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quiser, mas nos conte o tempo que levou para realizar o desafio.
+```http
+    GET /api/orders/waiter/{waiter}
+```
 
-# Instruções de entrega do desafio
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `waiter` | `integer` | **Obrigatório**. Id do garçom |
 
-1. Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
-2. Em seguida, implemente o projeto conforme as instruções a seguir, em seu clone local.
-3. Por fim, envie via e-mail com o link do desafio, avisando quanto tempo levou para faze-lo.
+### Exemplo
 
-# Descrição do projeto
+```http
+http://127.0.0.1:8000/api/orders/waiter/1
+```
 
-Precisamos que você crie uma API REST-FULL para a utilização de restaurante, que poderá ser utilizada para mobile ou um SPA.
 
-**Sua aplicação DEVE:**
+#### Listar pedidos a fazer e em andamento para cozinheiro
 
-1. Fazer login funcionario(garçom):
-- Deve apenas visualizar seus pedidos
+```http
+    GET /api/orders/cooker/
+```
 
-2. Fazer login funcionario(cozinheiro).
-- Deve visualizar todos os pedidos em andamento e há fazer
 
-> Não precisa ter login cliente
+#### Listar pedidos com filtros
 
-3. Cadastro de Clientes (nome, CPF)
-4. Fazer o cadastro das mesas do restaurante (número da mesa).
-5. Fazer o cadastro de cardapios (cardapios com os itens do cardapio).
-6. Fazer o pedido para a mesa do cliente.
-7. Listar todos os pedidos (filtros: dia, semana, mês, por mesa, por cliente).
-8. Listar pedidos em andamento, (para o garçom).
-9. Listar pedidos há fazer e em andamento, (para o cozinheiro).
-10. Listar por cliente, maior pedido, primeiro pedido, último pedido.
+```http
+    GET /api/orders/filters?day=12&month=2&table=1&customer=1
+```
 
-11. População de dados:
- - Deve possuir uma base com 10K clientes
- - 50 cardapios
- - 400K pedidos
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `day` | `integer` | **Opcional**. Dia do mês entre 1 e 31 |
+| `month` | `integer` | **Opcional**. Mês entre 1 e 12 |
+| `table` | `integer` | **Opcional**. Id da mesa |
+| `customer` | `integer` | **Opcional**. Id do cliente |
 
-> Dica: Utilize a biblioteca [faker](https://github.com/fakerphp/faker) para gerar os dados 😄
+### Exemplos
 
-**Sua aplicação web NÃO PRECISA:**
+```http
+http://127.0.0.1:8000/api/orders/filter?day=16
 
-1. Não precisa estar hospedada em nenhum servidor.
-2. Testes unitários (pontos extras se fizer)
-3. Testes integrados (pontos extras se fizer)
+http://127.0.0.1:8000/api/orders/filter?day=11&month=1
 
-# Tecnologias que deve estar presentes no desafio
+http://127.0.0.1:8000/api/orders/filter?table=2
+```
 
-- Laravel (obrigatório)
-- MySQL ou MariaDB
-- PHP
+#### Listar Maior, primeiro e último pedido do cliente
 
-**Não necessário mas se tiver será um diferencial**
+```http
+    GET /api/orders/customer/{customer}
+```
 
-- Testes Unitários
-- Testes integrados
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `customer` | `integer` | **Obrigatório**. Id do cliente |
 
-# Avaliação
+### Exemplos
 
-Seu projeto será avaliado de acordo com os seguintes critérios.
+```http
+http://127.0.0.1:8000/api/orders/customer/1
 
-1. Sua aplicação preenche os requerimentos básicos?
-2. Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-3. Você seguiu as instruções de envio do desafio?
-4. Boas práticas RestFull
-5. Boas práticas Laravel
-6. Clean Code
-7. SOLID
-8. Performance consultas
-
-Adicionalmente, tentaremos verificar sua experiência com programação funcional a partir da estrutura de seu projeto.
-
----
-
-## Boa sorte!
+```
