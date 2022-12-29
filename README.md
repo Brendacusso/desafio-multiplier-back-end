@@ -153,7 +153,7 @@ Para iniciar a API
     "table" : 2,
     "customer" : 1,
     "waiter" : 1,
-    "items" : (1,2,3)
+    "items" : [1,2,3]
 }
 ```
 
