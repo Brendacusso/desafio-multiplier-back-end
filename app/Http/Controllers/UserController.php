@@ -11,8 +11,6 @@ class UserController extends Controller
 
         $user = new User();
 
-        dd($request->email);
-
         $validated = $request->validate([
             'email' => 'required|email:rfc',
             'password' => 'required|min:4',
