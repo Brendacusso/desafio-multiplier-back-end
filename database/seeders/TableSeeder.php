@@ -16,7 +16,7 @@ class TableSeeder extends Seeder
     {
         for ($i=1; $i<12; $i++) {
             \DB::table('tables')->insert([
-                'table_number' => $i,
+                'description' => "Mesa ". $i,
             ]);
         }
     }

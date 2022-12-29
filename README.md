@@ -48,8 +48,8 @@ Para iniciar a API
 
 ```
 {
-    "email" : "nome@teste.com",
-    "password" : "38dfrAf@",
+    "email" : "usuario@restaurant.com",
+    "password" : "123456@",
     "role" : "waiter"
 }
 ```
@@ -104,13 +104,13 @@ Para iniciar a API
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `table_number` | `integer` | **Obrigatório**. Número da mesa|
+| `description` | `string` | **Obrigatório**. Descrição da mesa|
 
 ### Exemplo JSON
 
 ```
 {
-    "table_number" : 2
+    "description" : "Mesa 12"
 }
 ```
 

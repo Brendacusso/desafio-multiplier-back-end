@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $role = ['waiter', 'cooker'];
+        $role_array = ['waiter', 'cooker'];
 
         $faker = \Faker\Factory::create('pt_BR');
         for ($i=0; $i<10; $i++) {
@@ -24,12 +24,24 @@ class UserSeeder extends Seeder
                 $number = rand(0,1);
             }
 
-            $number = rand(0,1);
+            if($i == 0) {
+                $email = 'usuario@restaurant.com';
+                $password = '123456@';
+                $role = 'waiter';
+            } else {
+                $number = rand(0,1);
+
+                $email = $faker->email;
+                $password = $faker->password;
+                $role = $role_array[$number];
+            }
+
             \DB::table('users')->insert([
-                'email' => $faker->email,
-                'password' => $faker->password,
-                'role'=> $role[$number]
+                'email' => $email,
+                'password' => $password,
+                'role'=> $role
             ]);
+
         }
     }
 }

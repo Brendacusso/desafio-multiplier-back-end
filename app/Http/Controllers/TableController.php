@@ -12,17 +12,15 @@ class TableController extends Controller
         $table_num = new Table();
 
         $validated = $request->validate([
-            'table_number' => 'required|numeric|unique:tables',
+            'description' => 'required',
         ],
         [
-            'table_number.required'=>'Número da mesa não informado.',
-            'table_number.numeric'=> 'O valor informado não corresponde ao formato de número',
-            'table_number.unique'=>'Número da mesa já existente, insira um novo valor'
+            'description.required'=>'Dscrição da mesa não informado.'
         ]);
 
-        $table_num->table_number = $request->input('table_number');
+        $table_num->description = $request->input('description');
 
         $table_num->save();
-        return 'Success';
+        return 'Success Id da mesa: '.$table_num->id;
     }
 }
