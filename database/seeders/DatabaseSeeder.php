@@ -15,10 +15,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UserSeeder::class);
-        $this->call(MenuSeeder::class);
-        $this->call(CustomerSeeder::class);
-        $this->call(Table::class);
-        $this->call(OrderSeeder::class);
+        $menu = $this->call(MenuSeeder::class);
+        $customer = $this->call(CustomerSeeder::class);
+        $tables = $this->call(TableSeeder::class);
+
+        if($menu && $customer && $tables) {
+            $this->call(OrderSeeder::class);
+        }
+
 
     }
 }

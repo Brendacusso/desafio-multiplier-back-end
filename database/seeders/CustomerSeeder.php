@@ -15,7 +15,7 @@ class CustomerSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create('pt_BR');
-        for ($i=0; $i<10; $i++) {
+        for ($i=0; $i<400; $i++) {
             \DB::table('customers')->insert([
                 'name' => $faker->name,
                 'CPF' => $faker->cpf,
